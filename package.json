@@ -1,9 +1,11 @@
 {
-	"name": "create-hefestos-app",
+	"name": "hefestos-forge",
 	"version": "1.0.0",
-	"description": "HefestosJS CLI for initialize an application",
+	"description": "HefestosJS CLI for initializing an application",
 	"main": "index.js",
-	"bin": "index.js",
+	"bin": {
+		"hefestos-forge": "index.js"
+	},
 	"keywords": [
 		"hefestosjs",
 		"hefestos",
