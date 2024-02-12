@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "HefestosJS CLI for initialize an application",
 	"main": "index.js",
+	"bin": "index.js",
 	"keywords": [
 		"hefestosjs",
 		"hefestos",
