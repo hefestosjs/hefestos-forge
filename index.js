@@ -32,12 +32,20 @@ const removeGitKeepFiles = (dir) => {
 const repoName = process.argv[2];
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/hefestosjs/hefestos-app ${repoName}`;
 const installDepsCommand = `cd ${repoName} && npm install`;
+const gitAddCommand = "git add .";
+const gitCommitCommand = 'git commit -m "first commit"';
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
 if (!checkedOut) process.exit();
 
 removeGitKeepFiles(repoName);
+
+const gitAdd = runCommand(gitAddCommand);
+if (!gitAdd) process.exit();
+
+const gitCommit = runCommand(gitCommitCommand);
+if (!gitCommit) process.exit();
 
 console.log(`Installing dependencies for ${repoName}`);
 const installedDeps = runCommand(installDepsCommand);
