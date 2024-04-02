@@ -4,7 +4,7 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const runCommand = (command) => {
+const executeCommand = (command) => {
 	try {
 		execSync(`${command}`, { stdio: "inherit" });
 	} catch (error) {
@@ -15,41 +15,36 @@ const runCommand = (command) => {
 	return true;
 };
 
-const removeGitKeepFiles = (dir) => {
-	fs.readdirSync(dir).forEach((file) => {
-		const filePath = path.join(dir, file);
+const deleteGitFolder = (directory) => {
+	const gitDirectory = path.join(directory, ".git");
 
-		if (fs.statSync(filePath).isDirectory()) {
-			removeGitKeepFiles(filePath);
-		} else {
-			if (file === ".gitkeep") {
-				fs.unlinkSync(filePath);
-			}
-		}
-	});
+	if (fs.existsSync(gitDirectory)) {
+		execSync(`rm -rf ${gitDirectory}`);
+	}
 };
 
-const repoName = process.argv[2];
-const gitCheckoutCommand = `git clone --depth 1 https://github.com/hefestosjs/hefestos-app ${repoName}`;
-const installDepsCommand = `cd ${repoName} && npm install`;
-const gitAddCommand = `cd ${repoName} && git add .`;
-const gitCommitCommand = `cd ${repoName} && git commit -m "first commit"`;
+const repositoryName = process.argv[2];
 
-console.log(`Cloning the repository with name ${repoName}`);
-const checkedOut = runCommand(gitCheckoutCommand);
-if (!checkedOut) process.exit();
+const gitCloneCommand = `git clone --depth 1 https://github.com/hefestosjs/hefestos-app ${repositoryName}`;
+const installDependenciesCommand = `cd ${repositoryName} && npm install`;
+const initializeGitCommand = `cd ${repositoryName} && git init`;
+const renameGitMainBranchCommand = `cd ${repositoryName} && git branch -M main`;
 
-removeGitKeepFiles(repoName);
+console.log(`Cloning the repository with name ${repositoryName}`);
+const clonedRepository = executeCommand(gitCloneCommand);
+if (!clonedRepository) process.exit();
 
-const gitAdd = runCommand(gitAddCommand);
-if (!gitAdd) process.exit();
+deleteGitFolder(repositoryName);
 
-const gitCommit = runCommand(gitCommitCommand);
-if (!gitCommit) process.exit();
+const initializedGit = executeCommand(initializeGitCommand);
+if (!initializedGit) process.exit();
 
-console.log(`Installing dependencies for ${repoName}`);
-const installedDeps = runCommand(installDepsCommand);
-if (!installedDeps) process.exit();
+const renamedMainBranch = executeCommand(renameGitMainBranchCommand);
+if (!renamedMainBranch) process.exit();
+
+console.log(`Installing dependencies for ${repositoryName}`);
+const installedDependencies = executeCommand(installDependenciesCommand);
+if (!installedDependencies) process.exit();
 
 console.log("Let's start");
-console.log(`cd ${repoName} && npm run dev`);
+console.log(`cd ${repositoryName} && npm run dev`);
