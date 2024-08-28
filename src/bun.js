@@ -5,22 +5,22 @@ import fs from "node:fs";
 import path from "node:path";
 
 const executeCommand = (command) => {
-	try {
-		execSync(`${command}`, { stdio: "inherit" });
-	} catch (error) {
-		console.log(`Failed to execute ${command}`, error);
-		return false;
-	}
+  try {
+    execSync(`${command}`, { stdio: "inherit" });
+  } catch (error) {
+    console.log(`Failed to execute ${command}`, error);
+    return false;
+  }
 
-	return true;
+  return true;
 };
 
 const deleteGitFolder = (directory) => {
-	const gitDirectory = path.join(directory, ".git");
+  const gitDirectory = path.join(directory, ".git");
+  const githubDirectory = path.join(directory, ".github");
 
-	if (fs.existsSync(gitDirectory)) {
-		execSync(`rm -rf ${gitDirectory}`);
-	}
+  if (fs.existsSync(gitDirectory)) execSync(`rm -rf ${gitDirectory}`);
+  if (fs.existsSync(githubDirectory)) execSync(`rm -rf ${githubDirectory}`);
 };
 
 const repositoryName = process.argv[2];
