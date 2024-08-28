@@ -1,21 +1,23 @@
 {
-	"name": "hefestos-forge",
-	"version": "1.1.5",
-	"description": "HefestosJS CLI for initializing an application",
-	"main": "src/index.js",
-	"bin": {
-		"hefestos-forge": "src/index.js"
-	},
-	"keywords": [
-		"hefestosjs",
-		"hefestos",
-		"create-hefestos-app",
-		"hefestos-forge"
-	],
-	"author": "lucasnjsilva",
-	"license": "ISC",
-	"devDependencies": {
-		"@biomejs/biome": "1.8.3",
-		"plop": "^4.0.1"
-	}
+  "name": "hefestos-forge",
+  "version": "1.1.6",
+  "description": "HefestosJS CLI for initializing an application",
+  "main": "src/index.js",
+  "bin": {
+    "hefestos-forge": "src/index.js"
+  },
+  "keywords": [
+    "hefestosjs",
+    "hefestos",
+    "create-hefestos-app",
+    "hefestos-forge"
+  ],
+  "author": "lucasnjsilva",
+  "license": "ISC",
+  "dependencies": {
+    "plop": "^4.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3"
+  }
 }
