@@ -1,11 +1,13 @@
 {
   "name": "hefestos-forge",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "HefestosJS CLI for initializing an application",
   "main": "src/index.js",
+  "type": "module",
   "bin": {
     "hefestos-forge": "src/index.js"
   },
+  "preferGlobal": true,
   "keywords": [
     "hefestosjs",
     "hefestos",
@@ -18,6 +20,7 @@
     "plop": "^4.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3"
+    "@biomejs/biome": "1.8.3",
+    "@types/minimist": "^1.2.5"
   }
 }

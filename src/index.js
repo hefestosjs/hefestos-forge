@@ -1,22 +1,20 @@
 #!/usr/bin/env node
+import path from "node:path";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import minimist from "minimist";
+import { Plop, run } from "plop";
 
-const { execSync } = require("node:child_process");
 const args = process.argv.slice(2);
+const argv = minimist(args);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const isCommandAvailable = (command) => {
-  try {
-    execSync(`command -v ${command}`, { stdio: "ignore" });
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-const runtime = isCommandAvailable("node") ? "bunx" : "npx";
-const fullCommand = `${runtime} plop ${args.join(" ")}`;
-
-try {
-  execSync(fullCommand, { stdio: "inherit", shell: true });
-} catch (error) {
-  process.exit(1);
-}
+Plop.prepare(
+  {
+    cwd: argv.cwd,
+    configPath: path.join(__dirname, "..", "plopfile.mjs"),
+    preload: argv.preload || [],
+    completion: argv.completion,
+  },
+  (env) => Plop.execute(env, run),
+);

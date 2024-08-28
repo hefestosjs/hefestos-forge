@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const { execSync } = require("node:child_process");
-const fs = require("node:fs");
-const path = require("node:path");
+import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
 
 const executeCommand = (command) => {
 	try {
@@ -47,4 +47,4 @@ const installedDependencies = executeCommand(installDependenciesCommand);
 if (!installedDependencies) process.exit();
 
 console.log("Let's start");
-console.log(`cd ${repositoryName} && npm run dev`);
+console.log(`cd ${repositoryName}`);
