@@ -1,13 +1,16 @@
 import { execSync } from "node:child_process";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 export default function (plop) {
-  plop.setWelcomeMessage("Seja bem vindo");
-
-  plop.setActionType("executeScript", (answers, config, plop) => {
+  plop.setActionType("executeScript", (answers) => {
     let { runtime, repository } = answers;
     runtime = runtime.toLowerCase();
 
-    const command = `${runtime} ./src/${runtime}.js ${repository}`;
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const filePath = path.resolve(__dirname, `./src/${runtime}.js`);
+    const command = `${runtime} ${filePath} ${repository}`;
+
     execSync(command, { stdio: "inherit" });
   });
 
