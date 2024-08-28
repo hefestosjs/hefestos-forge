@@ -1,0 +1,9 @@
+# Folders
+node_modules
+
+# Files
+.nvmrc
+yarn.lock
+bun.lockb
+package-lock.json
+
