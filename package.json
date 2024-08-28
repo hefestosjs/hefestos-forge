@@ -1,6 +1,6 @@
 {
   "name": "hefestos-forge",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "HefestosJS CLI for initializing an application",
   "main": "src/index.js",
   "type": "module",
