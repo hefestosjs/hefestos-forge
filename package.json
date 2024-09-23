@@ -20,7 +20,7 @@
     "plop": "^4.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
+    "@biomejs/biome": "1.9.2",
     "@types/minimist": "^1.2.5"
   }
 }
